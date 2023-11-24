@@ -1,11 +1,26 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import logo1 from '../../../assets/logo dark.png'
-import { AiOutlineMenuFold, AiOutlineClose, AiOutlineLogin} from "react-icons/ai";
+import { AiOutlineMenuFold, AiOutlineClose, AiOutlineLogin } from "react-icons/ai";
 import NavItem from './NavItem';
 
 const Navbar = () => {
     const [isOpen, setIsOpen] = useState(false);
+    const [isScrolling, setIsScrolling] = useState(false);
+    const [prevScrollPos, setPrevScrollPos] = useState(0);
+
+    const onScroll = () => {
+        const currentScrollPos = window.pageYOffset;
+        setIsScrolling(currentScrollPos !== 0)
+        setPrevScrollPos(currentScrollPos)
+    }
+
+    useEffect(() => {
+        window.addEventListener('scroll', onScroll)
+        return () => {
+            window.removeEventListener('scroll', onScroll)
+        }
+    }, [prevScrollPos])
 
     const navLinks = <>
         <div className="flex flex-col md:flex-row md:mx-6 md:gap-6 gap-2">
@@ -17,9 +32,9 @@ const Navbar = () => {
     </>
 
     return (
-        <div>
-            <nav className="relative bg-transparent shadow">
-                <div className="max-w-7xl py-6 px-1 mx-auto md:flex md:justify-between md:items-center">
+        <div className={`${isScrolling? "fixed" : "absolute"}  w-full`}>
+            <nav className={`relative ${isScrolling ? "bg-seconderyCol shadow-2xl" : "bg-transparent"} transition duration-300`}>
+                <div className="max-w-7xl py-6 px-2 mx-auto md:flex md:justify-between md:items-center">
                     <div className="flex items-center justify-between">
                         <Link>
                             <img className="w-auto h-6 sm:h-9" src={logo1} alt="" />
@@ -38,10 +53,10 @@ const Navbar = () => {
                     </div>
 
                     {/* Mobile Menu open: "block", Menu closed: "hidden" */}
-                    <div className={`absolute inset-x-0 z-20 w-full px-6 py-4 transition-all duration-300 ease-in-out bg-bgCol md:mt-0 md:p-0 md:top-0 md:relative md:bg-transparent md:w-auto md:opacity-100 md:translate-x-0 md:flex md:items-center ${isOpen ? 'translate-x-0 opacity-100' : 'opacity-0 -translate-x-full'}`}>
+                    <div className={`absolute inset-x-0 z-20 w-full px-6 py-4 transition-all duration-300 ease-in-out ${isScrolling? "bg-seconderyCol" : "bg-seconderyCol/20"} bg-seconderyCol md:mt-0 md:p-0 md:top-0 md:relative md:bg-transparent md:w-auto md:opacity-100 md:translate-x-0 md:flex md:items-center ${isOpen ? 'translate-x-0 opacity-100' : 'opacity-0 -translate-x-full'}`}>
                         {navLinks}
                         <div className="flex justify-center md:block my-3 md:my-0">
-                                    <button className='py-2 md:py-3 px-4 md:px-6 md:ml-5 font-bold text-white transition duration-300 bg-primaryCol hover:bg-transparent border-2 border-primaryCol  rounded-xl text-lg'>Login <AiOutlineLogin className='inline text-2xl' /></button>
+                            <button className='py-2 md:py-3 px-4 md:px-6 md:ml-5 font-bold text-white transition duration-300 bg-primaryCol hover:bg-transparent border-2 border-primaryCol  rounded-xl text-lg uppercase'>Login <AiOutlineLogin className='inline text-2xl' /></button>
                         </div>
                     </div>
                 </div>

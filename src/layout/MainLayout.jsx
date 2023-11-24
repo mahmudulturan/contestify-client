@@ -2,11 +2,11 @@ import {Outlet} from 'react-router-dom'
 import Header from '../components/Header/Header';
 const MainLayout = () => {
   return (
-    <div className='bg-bgCol font-poppins'>
-        <Header></Header>
-        <h6>This is MainLayout </h6>
-        
+    <div className='bg-seconderyCol font-poppins'>
+        <Header></Header>   
+        <div className=''>
         <Outlet></Outlet>
+        </div>
     </div>
   );
 };
