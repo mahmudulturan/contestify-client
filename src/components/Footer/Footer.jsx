@@ -8,9 +8,9 @@ import Container from '../Shared/Container/Container';
 const Footer = () => {
     return (
         <div>
-            <Container minHeight={true}>
+            <Container minHeight={true} padding={true}>
                 <footer className="bg-transparent px-2 md:px-0">
-                    <div className="py-12 mx-auto">
+                    <div className="pt-6 pb-12 mx-auto">
                         <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 sm:gap-y-10 lg:grid-cols-4">
                             <div className="sm:col-span-2">
                                 <h1 className="max-w-lg text-xl font-semibold tracking-tight text-gray-800 xl:text-2xl dark:text-white">Get updates. Subscribe now!</h1>

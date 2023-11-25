@@ -5,7 +5,7 @@ const MainLayout = () => {
   return (
     <div className='bg-seconderyCol font-poppins'>
         <Header></Header>   
-        <div className=''>
+        <div className='min-h-screen'>
         <Outlet></Outlet>
         </div>
         <Footer></Footer>
