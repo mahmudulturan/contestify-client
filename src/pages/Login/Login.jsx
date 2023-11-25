@@ -5,12 +5,23 @@ import { useForm } from "react-hook-form";
 import Button from "../../components/Shared/Button/Button";
 import { Link } from "react-router-dom";
 import SocialLogin from "../../components/SocialLogin/SocialLogin";
+import useAuth from "../../hooks/useAuth";
+import { useState } from "react";
+import { FaEye, FaEyeSlash } from "react-icons/fa";
+import { CgSpinnerTwo } from "react-icons/cg";
+
 
 
 const Login = () => {
+    const [hidePassword, setHidePassword] = useState(true)
+    const { loginUser, updateUsersProfile, setLoading, loading } = useAuth()
+
     const { register, handleSubmit, formState: { errors } } = useForm()
-    const onSubmit = (data) =>{
-        console.log(data);
+    const onSubmit = async (data) => {
+        const email = data.email;
+        const password = data.password;
+        const user = await loginUser(email, password);
+        console.log(user);
     }
     return (
         <div className="pt-12 px-2 md:px-0">
@@ -21,19 +32,32 @@ const Login = () => {
                         <form onSubmit={handleSubmit(onSubmit)}>
                             <div>
                                 <label htmlFor="myemail" className="block text-white text-xl my-2">Email</label>
-                                <input {...register("email", {required: true}) } type="email" name="email" id="myemail" placeholder="Email Address" className="px-3 py-3 rounded-md outline-none w-full" />
+                                <input {...register("email", { required: true })} type="email" name="email" id="myemail" placeholder="Email Address" className="px-3 py-3 rounded-md outline-none w-full" />
                                 {errors.email && <span className="text-red-400 mt-2 font-medium">You must have to input an email...</span>}
                             </div>
                             <div>
                                 <label htmlFor="password" className="block text-white text-xl my-2">Password</label>
-                                <input {...register("password", {required: true})} type="password" name="password" id="password" placeholder="Your Password" className="px-3 py-3 rounded-md outline-none w-full" />
-                                {errors.password && <span className="text-red-400 mt-2 font-medium">You must have to type your password...</span>}
+                                <div className="relative">
+                                    <input {...register("password", { required: true })} type={`${hidePassword ? "password" : "text"}`} name="password" id="password" placeholder="Your Password" className="px-3 py-3 rounded-md outline-none w-full" />
+                                    {errors.password && <span className="text-red-400 mt-2 font-medium">You must have to type your password...</span>}
+                                    <span onClick={() => setHidePassword(!hidePassword)} className="absolute right-3 top-3 h-full text-2xl cursor-pointer">{
+                                        hidePassword ?
+                                            <FaEye />
+                                            :
+                                            <FaEyeSlash />
+                                    }</span>
+                                </div>
                             </div>
                             <div className="text-left text-sm cursor-pointer mt-1 mb-3 mr-2 text-white underline">
                                 <span>Forgot Password?</span>
                             </div>
                             <div className="text-center my-2">
-                            <Button wfull={true} name="Login"></Button>
+                                {
+                                    loading ?
+                                        <Button wfull={true} icon={CgSpinnerTwo} spin={true} transparent={true} disable={true}></Button>
+                                        :
+                                        <Button wfull={true} name="Login"></Button>
+                                }
                             </div>
                         </form>
                         <div>
