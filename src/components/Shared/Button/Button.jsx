@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 const Button = ({ name, icon: Icon, transparent }) => {
     return (
-        <button className={`py-2 md:py-3 px-4 md:px-6 font-bold text-white transition duration-300 ${transparent? "bg-transparent hover:bg-primaryCol" : "bg-primaryCol hover:bg-transparent"} bg-primaryCol hover:bg-transparent border-2 border-primaryCol  rounded-xl text-lg uppercase`}>{name} {Icon && <Icon className='inline text-2xl'></Icon>}</button>
+        <button className={`py-2 md:py-3 px-4 md:px-6 font-bold text-white transition duration-300 ${transparent? "bg-transparent hover:bg-primaryCol" : "bg-primaryCol hover:bg-transparent"} border-2 border-primaryCol  rounded-xl text-lg uppercase`}>{name} {Icon && <Icon className='inline text-2xl'></Icon>}</button>
     );
 };
 
