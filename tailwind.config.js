@@ -15,6 +15,7 @@ export default {
         primaryCol: "#0ECDB9",
         seconderyCol: "#1B1D4D",
         accentCol: "#203CB8",
+        cardCol: "#353b68",
       }
     },
   },

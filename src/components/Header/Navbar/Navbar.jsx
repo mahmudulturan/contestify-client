@@ -33,7 +33,7 @@ const Navbar = () => {
     </>
 
     return (
-        <div className={`${isScrolling? "fixed" : "absolute"}  w-full`}>
+        <div className={`${isScrolling? "fixed" : "absolute"}  w-full z-10`}>
             <nav className={`relative ${isScrolling ? "bg-seconderyCol shadow-2xl" : "bg-transparent"} transition duration-300`}>
                 <div className="max-w-7xl py-6 px-2 mx-auto md:flex md:justify-between md:items-center">
                     <div className="flex items-center justify-between">
