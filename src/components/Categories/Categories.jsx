@@ -1,6 +1,7 @@
 import queryString from 'query-string';
 import { useEffect } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
+import PropTypes from "prop-types";
 
 const Categories = ({searchKey, setSearchKey}) => {
     const [params, setParams] = useSearchParams();
@@ -33,5 +34,10 @@ const Categories = ({searchKey, setSearchKey}) => {
         </div>
     );
 };
+
+Categories.propTypes = {
+    searchKey: PropTypes.node, 
+    setSearchKey: PropTypes.any
+}
 
 export default Categories;
