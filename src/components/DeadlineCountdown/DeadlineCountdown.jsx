@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import PropTypes from "prop-types";
-const DeadlineCountdown = ({ deadline, setDeadlineOver }) => {
+const DeadlineCountdown = ({ deadline }) => {
     const calculateTimeRemaining = () => {
         const now = new Date().getTime();
         const endTime = new Date(deadline).getTime();
@@ -17,9 +17,7 @@ const DeadlineCountdown = ({ deadline, setDeadlineOver }) => {
     useEffect(() => {
         const interval = setInterval(() => {
             setTimeRemaining(calculateTimeRemaining());
-            if(timeRemaining.seconds<0){
-                setDeadlineOver(true)
-            }
+            
         }, 1000);
 
         return () => clearInterval(interval);
