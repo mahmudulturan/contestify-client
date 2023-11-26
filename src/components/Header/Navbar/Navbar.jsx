@@ -4,11 +4,16 @@ import logo1 from '../../../assets/logo dark.png'
 import { AiOutlineMenuFold, AiOutlineClose, AiOutlineLogin } from "react-icons/ai";
 import NavItem from './NavItem';
 import Button from '../../Shared/Button/Button';
+import useAuth from '../../../hooks/useAuth';
 
 const Navbar = () => {
     const [isOpen, setIsOpen] = useState(false);
+    const [isLoginOpen, setIsLoginOpen] = useState(false);
     const [isScrolling, setIsScrolling] = useState(false);
     const [prevScrollPos, setPrevScrollPos] = useState(0);
+    const { user, logOut } = useAuth();
+
+    const role = "creator"
 
     const onScroll = () => {
         const currentScrollPos = window.pageYOffset;
@@ -32,6 +37,11 @@ const Navbar = () => {
         </div>
     </>
 
+    const handleLogOut = () => {
+        logOut()
+
+    }
+
     return (
         <div className={`${isScrolling ? "fixed" : "absolute"}  w-full z-10`}>
             <nav className={`relative ${isScrolling ? "bg-seconderyCol shadow-2xl" : "bg-transparent"} transition duration-300`}>
@@ -54,12 +64,51 @@ const Navbar = () => {
                     </div>
 
                     {/* Mobile Menu open: "block", Menu closed: "hidden" */}
-                    <div className={`absolute inset-x-0 z-20 w-full px-6 py-4 transition-all duration-300 ease-in-out ${isScrolling ? "bg-seconderyCol" : "bg-seconderyCol/20"} bg-seconderyCol md:mt-0 md:p-0 md:top-0 md:relative md:bg-transparent md:w-auto md:opacity-100 md:translate-x-0 md:flex md:items-center ${isOpen ? 'translate-x-0 opacity-100' : 'opacity-0 -translate-x-full'}`}>
+                    <div className={`absolute inset-x-0 z-50 w-full px-6 py-4 transition-all duration-300 ease-in-out ${isScrolling ? "bg-seconderyCol" : "bg-seconderyCol/20"} bg-seconderyCol md:mt-0 md:p-0 md:top-0 md:relative md:bg-transparent md:w-auto md:opacity-100 md:translate-x-0 md:flex md:items-center ${isOpen ? 'translate-x-0 opacity-100' : 'opacity-0 -translate-x-full'}`}>
                         {navLinks}
-                        <div className="flex justify-center md:block my-3 md:my-0 md:ml-5">
-                            <Link to="/login">
-                            <Button name="Login" icon={AiOutlineLogin}></Button>
-                            </Link>
+                        <div className="flex  justify-center md:block my-3 md:my-0 md:ml-5">
+                            {
+                                user?.email ?
+                                    <div className=''>
+                                        <button onClick={() => setIsLoginOpen(!isLoginOpen)}>
+                                            <img className='w-12 rounded-full border-primaryCol border-2 cursor-pointer' src={user?.photoURL} alt="" />
+                                        </button>
+                                        <div className={`absolute z-10 right-0 mt-2 md:w-1/2 ${isScrolling ? "bg-seconderyCol" : "bg-seconderyCol/10"} rounded-md py-2 px-4  ${isLoginOpen ? 'translate-y-0' : '-translate-y-[1000px]'} transition-all duration-300 ease-in-out `}>
+                                            <h3 className='text-primaryCol font-semibold text-center text-lg'>{user?.displayName} <sup className='uppercase text-xs font-thin text-white'>{role}</sup></h3>
+                                            <div className='flex flex-col gap-3 my-2'>
+                                                {
+                                                    role == "user" && <>
+                                                        <Link to="/joined-contests" className='text-white font-medium hover:bg-primaryCol transition duration-300 py-1 px-3 rounded-md'>Joined Contests</Link>
+                                                        <Link to="/winning-contests" className='text-white font-medium hover:bg-primaryCol transition duration-300 py-1 px-3 rounded-md'>Winning Page</Link>
+                                                        <Link to="/my-profile" className='text-white font-medium hover:bg-primaryCol transition duration-300 py-1 px-3 rounded-md'>Profile</Link>
+                                                    </>
+                                                }
+                                                {
+                                                    role == "creator" && <>
+                                                        <Link to="/create-contests" className='text-white font-medium hover:bg-primaryCol transition duration-300 py-1 px-3 rounded-md'>Create Contest</Link>
+                                                        <Link to="/my-contests" className='text-white font-medium hover:bg-primaryCol transition duration-300 py-1 px-3 rounded-md'>My Contests</Link>
+                                                        <Link to="/all-submissions" className='text-white font-medium hover:bg-primaryCol transition duration-300 py-1 px-3 rounded-md'>All Submission</Link>
+                                                        <Link to="/my-profile" className='text-white font-medium hover:bg-primaryCol transition duration-300 py-1 px-3 rounded-md'>Profile</Link>
+                                                    </>
+                                                }
+                                                {
+                                                    role == "admin" && <>
+                                                        <Link to="/manage-contests" className='text-white font-medium hover:bg-primaryCol transition duration-300 py-1 px-3 rounded-md'>Contest Manager</Link>
+                                                        <Link to="/manage-users" className='text-white font-medium hover:bg-primaryCol transition duration-300 py-1 px-3 rounded-md'>User Manager</Link>
+                                                        <Link to="/my-profile" className='text-white font-medium hover:bg-primaryCol transition duration-300 py-1 px-3 rounded-md'>Profile</Link>
+                                                    </>
+                                                }
+                                                <span onClick={handleLogOut}>
+                                                    <Button wfull name="logout"></Button>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    :
+                                    <Link to="/login">
+                                        <Button name="Login" icon={AiOutlineLogin}></Button>
+                                    </Link>
+                            }
                         </div>
                     </div>
                 </div>
