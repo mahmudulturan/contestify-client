@@ -5,6 +5,7 @@ import Login from "../pages/Login/Login";
 import Register from "../pages/Register/Register";
 import AllContest from "../pages/AllContest/AllContest";
 import ContestDetail from "../pages/ContestDetail/ContestDetail";
+import CreateContest from "../pages/ContestCreator/CreateContest/CreateContest";
 
 const MainRoutes = createBrowserRouter([
     {
@@ -30,6 +31,10 @@ const MainRoutes = createBrowserRouter([
             {
                 path: '/register',
                 element: <Register></Register>
+            },
+            {
+                path: '/create-contests',
+                element: <CreateContest></CreateContest>
             },
         ]
     }
