@@ -1,7 +1,6 @@
 import PropTypes from 'prop-types';
 import Button from '../Shared/Button/Button';
 const ContestCard = ({ contest }) => {
-    console.log(contest);
     const { name, image, participate_count, description } = contest
     return (
         <div className='bg-cardCol py-2 px-3 rounded-md flex flex-col justify-evenly group'>

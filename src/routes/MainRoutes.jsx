@@ -3,6 +3,7 @@ import MainLayout from "../layout/MainLayout";
 import Home from "../pages/Home/Home";
 import Login from "../pages/Login/Login";
 import Register from "../pages/Register/Register";
+import AllContest from "../pages/AllContest/AllContest";
 
 const MainRoutes = createBrowserRouter([
     {
@@ -14,13 +15,17 @@ const MainRoutes = createBrowserRouter([
                 element: <Home></Home>
             },
             {
+                path: '/all-contest',
+                element: <AllContest></AllContest>
+            },
+            {
                 path: '/login',
                 element: <Login></Login>
             },
             {
                 path: '/register',
                 element: <Register></Register>
-            }
+            },
         ]
     }
 ])
