@@ -6,6 +6,7 @@ import Container from "../../components/Shared/Container/Container";
 import DeadlineCountdown from "../../components/DeadlineCountdown/DeadlineCountdown";
 import Button from "../../components/Shared/Button/Button";
 import { useState, useEffect } from 'react';
+import Loading from "../../components/Loading/Loading";
 
 const ContestDetail = () => {
     const [deadlineOver, setDeadlineOver] = useState(false)
@@ -29,7 +30,7 @@ const ContestDetail = () => {
         }
     }, [timeRemaining])
     
-    if (isLoading) return <p>Loading</p>
+    if (isLoading) return <Loading></Loading>
 
     const { _id, name, image, description, contest_price, prize_money, task_submission_instruction, contest_type, contest_deadline, participate_count, winner } = data;
 
