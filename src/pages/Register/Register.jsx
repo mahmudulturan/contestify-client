@@ -3,7 +3,7 @@ import LoginAnimation from '../../assets/Animations/LoginAnimation.json';
 import Lottie from "lottie-react";
 import { useForm } from "react-hook-form";
 import Button from "../../components/Shared/Button/Button";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useState } from 'react'
 import SocialLogin from "../../components/SocialLogin/SocialLogin";
 import useAuth from "../../hooks/useAuth";
@@ -11,16 +11,17 @@ import { imageUpload } from "../../api/utils";
 import { MdOutlineFileUpload } from "react-icons/md";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { CgSpinnerTwo } from "react-icons/cg";
-
-
-
+import { saveUser } from "../../api/auth";
+import toast from "react-hot-toast";
 
 const Register = () => {
     const [uploadImage, setUploadImage] = useState()
     const [hidePassword, setHidePassword] = useState(true)
     const { createUser, updateUsersProfile, setLoading, loading } = useAuth()
-
+    const navigate = useNavigate()
+    const loc = useLocation()
     const { register, handleSubmit, formState: { errors } } = useForm()
+
     const onSubmit = async (data) => {
         const email = data.email;
         const password = data.password;
@@ -28,12 +29,22 @@ const Register = () => {
         try {
             const { data: imageData } = await imageUpload(uploadImage)
             const image = imageData.display_url;
-            const userData = { email, password, name, image }
             const { user } = await createUser(email, password)
             await updateUsersProfile(name, image)
+            const result = await saveUser(user)
+            if (result.acknowledged) {
+                toast.success('Successfully Registered')
+                setLoading(false)
+            }
+            else if (result.status == "User Found") {
+                toast.success('Successfully Login')
+                setLoading(false)
+            }
+            navigate(loc.state?.from?.pathname || "/")
         }
         catch (err) {
-            console.log(err);
+            toast.error(err.message)
+            setLoading(false)
         }
     }
     return (
@@ -95,7 +106,7 @@ const Register = () => {
                             </div>
                             <div className="text-center my-3">
                                 {
-                                    loading?
+                                    loading ?
                                         <Button wfull={true} icon={CgSpinnerTwo} spin={true} transparent={true} disable={false}></Button>
                                         :
                                         <Button wfull={true} name="Register"></Button>
