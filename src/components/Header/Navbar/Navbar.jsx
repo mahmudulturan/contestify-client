@@ -6,15 +6,15 @@ import NavItem from './NavItem';
 import Button from '../../Shared/Button/Button';
 import useAuth from '../../../hooks/useAuth';
 
+import useUser from '../../../hooks/useUser';
+
 const Navbar = () => {
     const [isOpen, setIsOpen] = useState(false);
     const [isLoginOpen, setIsLoginOpen] = useState(false);
     const [isScrolling, setIsScrolling] = useState(false);
     const [prevScrollPos, setPrevScrollPos] = useState(0);
     const { user, logOut } = useAuth();
-
-    const role = "admin"
-
+    const {role} = useUser()
     const onScroll = () => {
         const currentScrollPos = window.pageYOffset;
         setIsScrolling(currentScrollPos !== 0)
