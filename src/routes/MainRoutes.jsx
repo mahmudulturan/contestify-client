@@ -8,6 +8,7 @@ import ContestDetail from "../pages/ContestDetail/ContestDetail";
 import CreateContest from "../pages/ContestCreator/CreateContest/CreateContest";
 import MyContests from "../pages/ContestCreator/MyContests/MyContests";
 import ContestManager from "../pages/Admin/ContestManager/ContestManager";
+import UsersManager from "../pages/Admin/UsersManager/UsersManager";
 
 const MainRoutes = createBrowserRouter([
     {
@@ -49,6 +50,10 @@ const MainRoutes = createBrowserRouter([
             {
                 path: '/manage-contests',
                 element: <ContestManager></ContestManager>
+            },
+            {
+                path: '/manage-users',
+                element: <UsersManager></UsersManager>
             },
         ]
     }
