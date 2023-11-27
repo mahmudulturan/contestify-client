@@ -7,6 +7,7 @@ import AllContest from "../pages/AllContest/AllContest";
 import ContestDetail from "../pages/ContestDetail/ContestDetail";
 import CreateContest from "../pages/ContestCreator/CreateContest/CreateContest";
 import MyContests from "../pages/ContestCreator/MyContests/MyContests";
+import ContestManager from "../pages/Admin/ContestManager/ContestManager";
 
 const MainRoutes = createBrowserRouter([
     {
@@ -33,6 +34,8 @@ const MainRoutes = createBrowserRouter([
                 path: '/register',
                 element: <Register></Register>
             },
+
+
             {
                 path: '/create-contests',
                 element: <CreateContest></CreateContest>
@@ -40,6 +43,12 @@ const MainRoutes = createBrowserRouter([
             {
                 path: '/my-contests',
                 element: <MyContests></MyContests>
+            },
+
+
+            {
+                path: '/manage-contests',
+                element: <ContestManager></ContestManager>
             },
         ]
     }

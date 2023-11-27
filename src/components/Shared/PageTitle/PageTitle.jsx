@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 
 const PageTitle = ({ bgImage, heading, subHeading, paragraph }) => {
   return (
-    <div className="min-h-[35vh]" style={{ backgroundImage: `url(${bgImage})`, backgroundSize: "cover", backgroundRepeat: "no-repeat" }}>
+    <div className="min-h-[35vh]" style={{ backgroundImage: `url(${bgImage || "https://i.ibb.co/7bQhPDX/10163.jpg"})`, backgroundSize: "cover", backgroundRepeat: "no-repeat" }}>
       <div className="w-full min-h-[35vh] bg-bgCol/75">
         <div className="max-w-7xl mx-auto pt-20 md:pt-28 py-6 px-2 md:px-0">
           <div className="border-l-8 rounded-md pl-2 border-primaryCol">

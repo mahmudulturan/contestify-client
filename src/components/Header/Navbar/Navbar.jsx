@@ -13,7 +13,7 @@ const Navbar = () => {
     const [prevScrollPos, setPrevScrollPos] = useState(0);
     const { user, logOut } = useAuth();
 
-    const role = "creator"
+    const role = "admin"
 
     const onScroll = () => {
         const currentScrollPos = window.pageYOffset;

@@ -12,7 +12,7 @@ const MyContests = () => {
     const axios = useAxiosSecure();
     const { data: mycontests, isLoading } = useQuery({
         queryKey: ["mycontests", user?.email], queryFn: async () => {
-            const res = await axios.get(`/contests?email=${user?.email}`)
+            const res = await axios.get(`/all-contests?email=${user?.email}`)
             return res.data
         }
     })
