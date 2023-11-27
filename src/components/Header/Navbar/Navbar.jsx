@@ -78,24 +78,24 @@ const Navbar = () => {
                                             <div className='flex flex-col gap-3 my-2'>
                                                 {
                                                     role == "user" && <>
-                                                        <Link to="/joined-contests" className='text-white font-medium hover:bg-primaryCol transition duration-300 py-1 px-3 rounded-md'>Joined Contests</Link>
-                                                        <Link to="/winning-contests" className='text-white font-medium hover:bg-primaryCol transition duration-300 py-1 px-3 rounded-md'>Winning Page</Link>
-                                                        <Link to="/my-profile" className='text-white font-medium hover:bg-primaryCol transition duration-300 py-1 px-3 rounded-md'>Profile</Link>
+                                                        <Link onClick={()=> setIsLoginOpen(false)} to="/joined-contests" className='text-white font-medium hover:bg-primaryCol transition duration-300 py-1 px-3 rounded-md'>Joined Contests</Link>
+                                                        <Link onClick={()=> setIsLoginOpen(false)} to="/winning-contests" className='text-white font-medium hover:bg-primaryCol transition duration-300 py-1 px-3 rounded-md'>Winning Page</Link>
+                                                        <Link onClick={()=> setIsLoginOpen(false)} to="/my-profile" className='text-white font-medium hover:bg-primaryCol transition duration-300 py-1 px-3 rounded-md'>Profile</Link>
                                                     </>
                                                 }
                                                 {
                                                     role == "creator" && <>
-                                                        <Link to="/create-contests" className='text-white font-medium hover:bg-primaryCol transition duration-300 py-1 px-3 rounded-md'>Create Contest</Link>
-                                                        <Link to="/my-contests" className='text-white font-medium hover:bg-primaryCol transition duration-300 py-1 px-3 rounded-md'>My Contests</Link>
-                                                        <Link to="/all-submissions" className='text-white font-medium hover:bg-primaryCol transition duration-300 py-1 px-3 rounded-md'>All Submission</Link>
-                                                        <Link to="/my-profile" className='text-white font-medium hover:bg-primaryCol transition duration-300 py-1 px-3 rounded-md'>Profile</Link>
+                                                        <Link onClick={()=> setIsLoginOpen(false)} to="/create-contests" className='text-white font-medium hover:bg-primaryCol transition duration-300 py-1 px-3 rounded-md'>Create Contest</Link>
+                                                        <Link onClick={()=> setIsLoginOpen(false)} to="/my-contests" className='text-white font-medium hover:bg-primaryCol transition duration-300 py-1 px-3 rounded-md'>My Contests</Link>
+                                                        <Link onClick={()=> setIsLoginOpen(false)} to="/all-submissions" className='text-white font-medium hover:bg-primaryCol transition duration-300 py-1 px-3 rounded-md'>All Submission</Link>
+                                                        <Link onClick={()=> setIsLoginOpen(false)} to="/my-profile" className='text-white font-medium hover:bg-primaryCol transition duration-300 py-1 px-3 rounded-md'>Profile</Link>
                                                     </>
                                                 }
                                                 {
                                                     role == "admin" && <>
-                                                        <Link to="/manage-contests" className='text-white font-medium hover:bg-primaryCol transition duration-300 py-1 px-3 rounded-md'>Contest Manager</Link>
-                                                        <Link to="/manage-users" className='text-white font-medium hover:bg-primaryCol transition duration-300 py-1 px-3 rounded-md'>User Manager</Link>
-                                                        <Link to="/my-profile" className='text-white font-medium hover:bg-primaryCol transition duration-300 py-1 px-3 rounded-md'>Profile</Link>
+                                                        <Link onClick={()=> setIsLoginOpen(false)} to="/manage-contests" className='text-white font-medium hover:bg-primaryCol transition duration-300 py-1 px-3 rounded-md'>Contest Manager</Link>
+                                                        <Link onClick={()=> setIsLoginOpen(false)} to="/manage-users" className='text-white font-medium hover:bg-primaryCol transition duration-300 py-1 px-3 rounded-md'>User Manager</Link>
+                                                        <Link onClick={()=> setIsLoginOpen(false)} to="/my-profile" className='text-white font-medium hover:bg-primaryCol transition duration-300 py-1 px-3 rounded-md'>Profile</Link>
                                                     </>
                                                 }
                                                 <span onClick={handleLogOut}>
