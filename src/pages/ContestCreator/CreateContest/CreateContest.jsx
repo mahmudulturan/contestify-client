@@ -8,17 +8,59 @@ import { CgSpinnerTwo } from "react-icons/cg";
 import useAuth from "../../../hooks/useAuth";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+import { imageUpload } from "../../../api/utils";
+import useAxiosSecure from "../../../hooks/useAxiosSecure";
+import toast from 'react-hot-toast';
+import { useNavigate } from "react-router-dom";
+
 
 
 const CreateContest = () => {
     const [uploadImage, setUploadImage] = useState()
+    const [loading, setLoading] = useState(false)
     const [contestDeadline, setContestDeadline] = useState(new Date())
-    const { register, handleSubmit, formState: { errors } } = useForm()
-    const { user, loading } = useAuth()
+    const { register, handleSubmit, formState: { errors }, reset } = useForm()
+    const { user } = useAuth()
+    const axios = useAxiosSecure()
+    const navigate = useNavigate()
 
 
-    const onSubmit = (data) => {
-        console.log(data);
+    const onSubmit = async (data) => {
+        setLoading(true)
+        try {
+            const { data: imageData } = await imageUpload(uploadImage)
+            setLoading(true)
+            const name = data.name;
+            const image = imageData?.display_url;
+            const description = data.description;
+            const contest_price = Number(data.price);
+            const prize_money = Number(data.prize);
+            const task_submission_instruction = data.instruction;
+            const contest_type = data.type;
+            const participate_count = 0;
+            const contest_deadline = contestDeadline.toLocaleDateString();
+            const contest_creator = {
+                email: user?.email,
+                name: user?.displayName,
+            }
+            const contestData = { name, image, description, contest_price, prize_money, task_submission_instruction, contest_type, contest_deadline, participate_count, contest_creator }
+
+            const { data: result } = await axios.post('/contests', contestData)
+            if (result.acknowledged) {
+                console.log(result);
+                reset()
+                setUploadImage("")
+                setContestDeadline(new Date())
+                setLoading(false)
+                toast.success('Successfully created!');
+                navigate('/my-contests')
+            }
+        }
+        catch (err) {
+            toast.error('error!');
+            setLoading(false)
+        }
+
     }
 
     return (
@@ -64,17 +106,18 @@ const CreateContest = () => {
                             </div>
                             <div>
                                 <label htmlFor="type" className="block text-white text-xl my-2">Contest Type</label>
-                                <select {...register("type", { required: true })} name="name" id="name" className="px-3 py-3 rounded-md outline-none w-full" defaultValue="select">
-                                    <option value="select" disabled>Select Your Contest Type</option>
+                                <select defaultValue="" {...register("type", { required: true })} name="type" id="type" className="px-3 py-3 rounded-md outline-none w-full">
+                                    <option value="" disabled>Select Your Contest Type</option>
                                     <option value="Business Contest" >Business Contest</option>
                                     <option value="Medical Contest" >Medical Contest</option>
                                     <option value="Article Writing" >Article Writing</option>
                                     <option value="Gaming" >Gaming</option>
                                 </select>
+
                                 {errors.type && <span className="text-red-400 mt-2 font-medium">You must have to select an contest type...</span>}
                             </div>
                             <div>
-                                 <label htmlFor="deadline" className="block text-white text-xl my-2">Contest Deadline</label>
+                                <label htmlFor="deadline" className="block text-white text-xl my-2">Contest Deadline</label>
                                 <h3 className="px-3 py-3 rounded-md outline-none w-full">
                                     <DatePicker
                                         width="100%"
@@ -85,7 +128,7 @@ const CreateContest = () => {
                                         className="px-3 py-3 rounded-md outline-none w-full"
                                     />
                                 </h3>
-                    
+
                                 {/* {errors.date && <span className="text-red-400 mt-2 font-medium">You must have to input an name...</span>} */}
                             </div>
                             <div>
