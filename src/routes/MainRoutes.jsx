@@ -46,7 +46,7 @@ const MainRoutes = createBrowserRouter([
     },
     {
         path: '/dashboard',
-        element: <DashboardLayout></DashboardLayout>,
+        element: <PrivateRoutes><DashboardLayout></DashboardLayout></PrivateRoutes>,
         children: [
             {
                 path: 'my-profile',

@@ -17,7 +17,7 @@ import toast from "react-hot-toast";
 const Register = () => {
     const [uploadImage, setUploadImage] = useState()
     const [hidePassword, setHidePassword] = useState(true)
-    const { createUser, updateUsersProfile, setLoading, loading, user } = useAuth()
+    const { createUser, updateUsersProfile, loading, user } = useAuth()
     const navigate = useNavigate()
     const loc = useLocation()
     const { register, handleSubmit, formState: { errors } } = useForm()
@@ -37,17 +37,14 @@ const Register = () => {
             const result = await saveUser(user)
             if (result.acknowledged) {
                 toast.success('Successfully Registered')
-                setLoading(false)
             }
             else if (result.status == "User Found") {
                 toast.success('Successfully Login')
-                setLoading(false)
             }
             navigate(loc.state?.from?.pathname || "/", { replace: true })
         }
         catch (err) {
             toast.error(err.message)
-            setLoading(false)
         }
     }
     return (

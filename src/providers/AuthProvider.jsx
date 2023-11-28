@@ -21,7 +21,6 @@ const AuthProvider = ({children}) => {
         return signInWithEmailAndPassword(auth, email, password)
     }
     const updateUsersProfile = (name, image) =>{
-        setLoading(true)
         return updateProfile(auth.currentUser, { displayName: name, photoURL:image})
     }
     const logOut = () =>{
