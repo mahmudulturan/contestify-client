@@ -1,18 +1,17 @@
 import { useQuery } from "@tanstack/react-query";
-import Container from "../../../components/Shared/Container/Container";
-import PageTitle from "../../../components/Shared/PageTitle/PageTitle";
-import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import MyContestsTable from "./MyContestsTable";
-import useAuth from "../../../hooks/useAuth";
-import Loading from "../../../components/Loading/Loading";
+import PageTitle from "../../../../components/Shared/PageTitle/PageTitle";
+import Container from "../../../../components/Shared/Container/Container";
+import { axiosSecure } from "../../../../api/axiosSecure";
+import useAuth from "../../../../hooks/useAuth";
+import Loading from "../../../../components/Loading/Loading";
 
 
 const MyContests = () => {
     const { user } = useAuth()
-    const axios = useAxiosSecure();
     const { data: mycontests, isLoading } = useQuery({
         queryKey: ["mycontests", user?.email], queryFn: async () => {
-            const res = await axios.get(`/all-contests?email=${user?.email}`)
+            const res = await axiosSecure.get(`/all-contests?email=${user?.email}`)
             return res.data
         }
     })

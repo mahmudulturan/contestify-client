@@ -5,13 +5,13 @@ import Login from "../pages/Login/Login";
 import Register from "../pages/Register/Register";
 import AllContest from "../pages/AllContest/AllContest";
 import ContestDetail from "../pages/ContestDetail/ContestDetail";
-import CreateContest from "../pages/ContestCreator/CreateContest/CreateContest";
-import MyContests from "../pages/ContestCreator/MyContests/MyContests";
-import ContestManager from "../pages/Admin/ContestManager/ContestManager";
-import UsersManager from "../pages/Admin/UsersManager/UsersManager";
-import MyProfile from "../pages/MyProfile/MyProfile";
+import MyProfile from "../pages/Dashboard/Shared/MyProfile/MyProfile";
 import PrivateRoutes from "./PrivateRoutes";
 import DashboardLayout from "../layout/DashboardLayout";
+import ContestManager from "../pages/Dashboard/Admin/ContestManager/ContestManager";
+import UsersManager from "../pages/Dashboard/Admin/UsersManager/UsersManager";
+import CreateContest from "../pages/Dashboard/ContestCreator/CreateContest/CreateContest";
+import MyContests from "../pages/Dashboard/ContestCreator/MyContests/MyContests";
 
 const MainRoutes = createBrowserRouter([
     {

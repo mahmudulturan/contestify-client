@@ -1,11 +1,11 @@
 import { FaSpinner } from "react-icons/fa6";
-import { imageUpload } from "../../api/utils";
-import Container from "../../components/Shared/Container/Container";
-import useAuth from "../../hooks/useAuth";
-import useUser from "../../hooks/useUser";
+import { imageUpload } from "../../../../api/utils";
+import Container from "../../../../components/Shared/Container/Container";
+import useAuth from "../../../../hooks/useAuth";
+import useUser from "../../../../hooks/useUser";
 import { useState } from "react"
 import { IoMdCamera } from "react-icons/io";
-import { axiosSecure } from "../../api/axiosSecure";
+import { axiosSecure } from "../../../../api/axiosSecure";
 import { FaEdit } from "react-icons/fa";
 
 

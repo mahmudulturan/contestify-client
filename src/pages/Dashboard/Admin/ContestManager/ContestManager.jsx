@@ -1,9 +1,9 @@
 import { useQuery } from "@tanstack/react-query";
-import Container from "../../../components/Shared/Container/Container";
-import PageTitle from "../../../components/Shared/PageTitle/PageTitle";
-import useAxiosSecure from "../../../hooks/useAxiosSecure";
+import Container from "../../../../components/Shared/Container/Container";
+import useAxiosSecure from "../../../../hooks/useAxiosSecure";
+import Loading from "../../../../components/Loading/Loading";
+import PageTitle from "../../../../components/Shared/PageTitle/PageTitle";
 import ContestManagerTable from "./ContestManagerTable";
-import Loading from "../../../components/Loading/Loading";
 
 const ContestManager = () => {
   const axios = useAxiosSecure()

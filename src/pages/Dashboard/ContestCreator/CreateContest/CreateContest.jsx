@@ -1,17 +1,17 @@
 import { MdOutlineFileUpload } from "react-icons/md";
-import Container from "../../../components/Shared/Container/Container";
-import PageTitle from "../../../components/Shared/PageTitle/PageTitle";
 import { useForm } from "react-hook-form";
 import { useState } from 'react'
-import Button from "../../../components/Shared/Button/Button";
 import { CgSpinnerTwo } from "react-icons/cg";
-import useAuth from "../../../hooks/useAuth";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-import { imageUpload } from "../../../api/utils";
-import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import toast from 'react-hot-toast';
 import { useNavigate } from "react-router-dom";
+import PageTitle from "../../../../components/Shared/PageTitle/PageTitle";
+import Container from "../../../../components/Shared/Container/Container";
+import Button from "../../../../components/Shared/Button/Button";
+import useAuth from "../../../../hooks/useAuth";
+import { imageUpload } from "../../../../api/utils";
+import { axiosSecure } from "../../../../api/axiosSecure";
 
 
 
@@ -21,7 +21,6 @@ const CreateContest = () => {
     const [contestDeadline, setContestDeadline] = useState(new Date())
     const { register, handleSubmit, formState: { errors }, reset } = useForm()
     const { user } = useAuth()
-    const axios = useAxiosSecure()
     const navigate = useNavigate()
 
 
@@ -46,7 +45,7 @@ const CreateContest = () => {
             }
             const contestData = { name, image, description, contest_price, prize_money, task_submission_instruction, status, contest_type, contest_deadline, participate_count, contest_creator }
 
-            const { data: result } = await axios.post('/contests', contestData)
+            const { data: result } = await axiosSecure.post('/contests', contestData)
             if (result.acknowledged) {
                 console.log(result);
                 reset()
@@ -54,7 +53,7 @@ const CreateContest = () => {
                 setContestDeadline(new Date())
                 setLoading(false)
                 toast.success('Successfully created!');
-                navigate('/my-contests')
+                navigate('/dashboard/my-contests')
             }
         }
         catch (err) {

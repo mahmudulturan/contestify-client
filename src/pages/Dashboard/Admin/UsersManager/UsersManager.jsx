@@ -1,8 +1,8 @@
 import { useQuery } from "@tanstack/react-query";
-import PageTitle from "../../../components/Shared/PageTitle/PageTitle";
-import { axiosSecure } from "../../../api/axiosSecure";
-import Container from "../../../components/Shared/Container/Container";
 import UsersManageTable from "./UsersManageTable";
+import PageTitle from "../../../../components/Shared/PageTitle/PageTitle";
+import { axiosSecure } from "../../../../api/axiosSecure";
+import Container from "../../../../components/Shared/Container/Container";
 
 const UsersManager = () => {
     const {data: users, refetch} = useQuery({queryKey: ["all-users"], queryFn: async()=>{

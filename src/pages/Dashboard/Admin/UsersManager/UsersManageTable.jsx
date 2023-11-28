@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import { MdDelete } from "react-icons/md";
 import Swal from 'sweetalert2';
-import { axiosSecure } from '../../../api/axiosSecure';
+import { axiosSecure } from '../../../../api/axiosSecure';
 
 const UsersManageTable = ({ users, refetch }) => {
 
