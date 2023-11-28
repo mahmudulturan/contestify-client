@@ -3,25 +3,32 @@ import LoginAnimation from '../../assets/Animations/LoginAnimation.json';
 import Lottie from "lottie-react";
 import { useForm } from "react-hook-form";
 import Button from "../../components/Shared/Button/Button";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import SocialLogin from "../../components/SocialLogin/SocialLogin";
 import useAuth from "../../hooks/useAuth";
 import { useState } from "react";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { CgSpinnerTwo } from "react-icons/cg";
+import toast from "react-hot-toast";
 
 
 
 const Login = () => {
     const [hidePassword, setHidePassword] = useState(true)
-    const { loginUser, updateUsersProfile, setLoading, loading } = useAuth()
+    const { loginUser, loading, user } = useAuth()
+    const navigate = useNavigate()
+    const loc = useLocation()
+    if (user) {
+        navigate(loc.state?.from?.pathname || "/", { replace: true })
+    }
 
     const { register, handleSubmit, formState: { errors } } = useForm()
     const onSubmit = async (data) => {
         const email = data.email;
         const password = data.password;
-        const user = await loginUser(email, password);
-        console.log(user);
+        await loginUser(email, password);
+        toast.success('Successfully Login')
+        navigate(loc.state?.from?.pathname || "/", { replace: true })
     }
     return (
         <div className="pt-12 px-2 md:px-0">
@@ -61,7 +68,7 @@ const Login = () => {
                             </div>
                         </form>
                         <div>
-                            <p className="text-white text-right my-2">Don`t have any account? <Link to="/register" className="text-primaryCol underline">Register Here</Link></p>
+                            <p className="text-white text-right my-2">Don`t have any account? <Link state={loc?.state} replace to="/register" className="text-primaryCol underline">Register Here</Link></p>
                         </div>
                         <SocialLogin></SocialLogin>
                     </div>

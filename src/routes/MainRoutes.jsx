@@ -10,6 +10,8 @@ import MyContests from "../pages/ContestCreator/MyContests/MyContests";
 import ContestManager from "../pages/Admin/ContestManager/ContestManager";
 import UsersManager from "../pages/Admin/UsersManager/UsersManager";
 import MyProfile from "../pages/MyProfile/MyProfile";
+import PrivateRoutes from "./PrivateRoutes";
+import DashboardLayout from "../layout/DashboardLayout";
 
 const MainRoutes = createBrowserRouter([
     {
@@ -26,7 +28,7 @@ const MainRoutes = createBrowserRouter([
             },
             {
                 path: '/all-contest/:id',
-                element: <ContestDetail></ContestDetail>
+                element: <PrivateRoutes><ContestDetail></ContestDetail></PrivateRoutes>
             },
             {
                 path: '/login',
@@ -38,29 +40,37 @@ const MainRoutes = createBrowserRouter([
             },
 
 
+            
+        ],
+        
+    },
+    {
+        path: '/dashboard',
+        element: <DashboardLayout></DashboardLayout>,
+        children: [
             {
-                path: '/my-profile',
+                path: 'my-profile',
                 element: <MyProfile></MyProfile>
             },
 
 
 
             {
-                path: '/create-contests',
+                path: 'create-contests',
                 element: <CreateContest></CreateContest>
             },
             {
-                path: '/my-contests',
+                path: 'my-contests',
                 element: <MyContests></MyContests>
             },
 
 
             {
-                path: '/manage-contests',
+                path: 'manage-contests',
                 element: <ContestManager></ContestManager>
             },
             {
-                path: '/manage-users',
+                path: 'manage-users',
                 element: <UsersManager></UsersManager>
             },
         ]

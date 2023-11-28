@@ -17,11 +17,14 @@ import toast from "react-hot-toast";
 const Register = () => {
     const [uploadImage, setUploadImage] = useState()
     const [hidePassword, setHidePassword] = useState(true)
-    const { createUser, updateUsersProfile, setLoading, loading } = useAuth()
+    const { createUser, updateUsersProfile, setLoading, loading, user } = useAuth()
     const navigate = useNavigate()
     const loc = useLocation()
     const { register, handleSubmit, formState: { errors } } = useForm()
 
+    if (user) {
+        navigate(loc.state?.from?.pathname || "/", { replace: true })
+    }
     const onSubmit = async (data) => {
         const email = data.email;
         const password = data.password;
@@ -40,7 +43,7 @@ const Register = () => {
                 toast.success('Successfully Login')
                 setLoading(false)
             }
-            navigate(loc.state?.from?.pathname || "/")
+            navigate(loc.state?.from?.pathname || "/", { replace: true })
         }
         catch (err) {
             toast.error(err.message)
@@ -114,7 +117,7 @@ const Register = () => {
                             </div>
                         </form>
                         <div>
-                            <p className="text-white text-right my-2">Already have an account? <Link to="/login" className="text-primaryCol underline">Login Here</Link></p>
+                            <p className="text-white text-right my-2">Already have an account? <Link state={loc?.state} replace to="/login" className="text-primaryCol underline">Login Here</Link></p>
                         </div>
                         <SocialLogin></SocialLogin>
                     </div>

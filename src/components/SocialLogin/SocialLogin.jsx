@@ -18,7 +18,7 @@ const SocialLogin = () => {
     else if (result.status == "User Found") {
       toast.success('Successfully Login')
     }
-    navigate(loc.state?.from?.pathname || "/")
+    navigate(loc.state?.from?.pathname || "/", {replace: true})
     console.log(result);
   }
 

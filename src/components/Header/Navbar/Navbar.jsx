@@ -14,7 +14,7 @@ const Navbar = () => {
     const [isScrolling, setIsScrolling] = useState(false);
     const [prevScrollPos, setPrevScrollPos] = useState(0);
     const { user, logOut } = useAuth();
-    const {role} = useUser()
+    const { role } = useUser()
     const onScroll = () => {
         const currentScrollPos = window.pageYOffset;
         setIsScrolling(currentScrollPos !== 0)
@@ -71,33 +71,12 @@ const Navbar = () => {
                                 user?.email ?
                                     <div className=''>
                                         <button onClick={() => setIsLoginOpen(!isLoginOpen)}>
-                                            <img className='w-12 rounded-full border-primaryCol border-2 cursor-pointer' src={user?.photoURL} alt="" />
+                                            <img className='w-12 h-12 object-cover rounded-full border-primaryCol border-2 cursor-pointer' src={user?.photoURL} alt="" />
                                         </button>
                                         <div className={`absolute z-10 right-0 mt-2 md:w-1/2 ${isScrolling ? "bg-seconderyCol" : "bg-seconderyCol/10"} rounded-md py-2 px-4  ${isLoginOpen ? 'translate-y-0' : '-translate-y-[1000px]'} transition-all duration-300 ease-in-out `}>
                                             <h3 className='text-primaryCol font-semibold text-center text-lg'>{user?.displayName} <sup className='uppercase text-xs font-thin text-white'>{role}</sup></h3>
                                             <div className='flex flex-col gap-3 my-2'>
-                                                {
-                                                    role == "user" && <>
-                                                        <Link onClick={()=> setIsLoginOpen(false)} to="/joined-contests" className='text-white font-medium hover:bg-primaryCol transition duration-300 py-1 px-3 rounded-md'>Joined Contests</Link>
-                                                        <Link onClick={()=> setIsLoginOpen(false)} to="/winning-contests" className='text-white font-medium hover:bg-primaryCol transition duration-300 py-1 px-3 rounded-md'>Winning Page</Link>
-                                                        <Link onClick={()=> setIsLoginOpen(false)} to="/my-profile" className='text-white font-medium hover:bg-primaryCol transition duration-300 py-1 px-3 rounded-md'>Profile</Link>
-                                                    </>
-                                                }
-                                                {
-                                                    role == "creator" && <>
-                                                        <Link onClick={()=> setIsLoginOpen(false)} to="/create-contests" className='text-white font-medium hover:bg-primaryCol transition duration-300 py-1 px-3 rounded-md'>Create Contest</Link>
-                                                        <Link onClick={()=> setIsLoginOpen(false)} to="/my-contests" className='text-white font-medium hover:bg-primaryCol transition duration-300 py-1 px-3 rounded-md'>My Contests</Link>
-                                                        <Link onClick={()=> setIsLoginOpen(false)} to="/all-submissions" className='text-white font-medium hover:bg-primaryCol transition duration-300 py-1 px-3 rounded-md'>All Submission</Link>
-                                                        <Link onClick={()=> setIsLoginOpen(false)} to="/my-profile" className='text-white font-medium hover:bg-primaryCol transition duration-300 py-1 px-3 rounded-md'>Profile</Link>
-                                                    </>
-                                                }
-                                                {
-                                                    role == "admin" && <>
-                                                        <Link onClick={()=> setIsLoginOpen(false)} to="/manage-contests" className='text-white font-medium hover:bg-primaryCol transition duration-300 py-1 px-3 rounded-md'>Contest Manager</Link>
-                                                        <Link onClick={()=> setIsLoginOpen(false)} to="/manage-users" className='text-white font-medium hover:bg-primaryCol transition duration-300 py-1 px-3 rounded-md'>User Manager</Link>
-                                                        <Link onClick={()=> setIsLoginOpen(false)} to="/my-profile" className='text-white font-medium hover:bg-primaryCol transition duration-300 py-1 px-3 rounded-md'>Profile</Link>
-                                                    </>
-                                                }
+                                                <Link onClick={() => setIsLoginOpen(false)} to="/dashboard" className='text-white font-medium hover:bg-primaryCol transition duration-300 py-1 px-3 rounded-md'>Dashboard</Link>
                                                 <span onClick={handleLogOut}>
                                                     <Button wfull name="logout"></Button>
                                                 </span>
