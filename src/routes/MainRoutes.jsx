@@ -13,6 +13,7 @@ import UsersManager from "../pages/Dashboard/Admin/UsersManager/UsersManager";
 import CreateContest from "../pages/Dashboard/ContestCreator/CreateContest/CreateContest";
 import MyContests from "../pages/Dashboard/ContestCreator/MyContests/MyContests";
 import PaymentPage from "../pages/PaymentPage/PaymentPage";
+import JoinedContest from "../pages/Dashboard/User/JoinedContest/JoinedContest";
 
 const MainRoutes = createBrowserRouter([
     {
@@ -58,6 +59,11 @@ const MainRoutes = createBrowserRouter([
                 element: <MyProfile></MyProfile>
             },
 
+            {
+                path: 'joined-contests',
+                element: <JoinedContest></JoinedContest>
+            },
+            
 
 
             {

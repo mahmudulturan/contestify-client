@@ -77,7 +77,7 @@ const UsersManageTable = ({ users, refetch }) => {
                                 <td className="py-4 px-4 text-sm font-normal text-left">{indx + 1}</td>
                                 <td className="py-4 px-4 text-sm font-normal text-left">
                                     <div className='flex items-center justify-start gap-3'>
-                                        <img className='w-16 object-cover rounded-md' src={user?.image} alt="" />
+                                        <img className='w-16 h-16 object-cover rounded-md' src={user?.image} alt="" />
                                         <div>
                                             {user?.name} <span className="block text-xs">{user?.email}</span>
                                         </div>
