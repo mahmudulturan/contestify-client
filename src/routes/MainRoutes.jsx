@@ -12,6 +12,7 @@ import ContestManager from "../pages/Dashboard/Admin/ContestManager/ContestManag
 import UsersManager from "../pages/Dashboard/Admin/UsersManager/UsersManager";
 import CreateContest from "../pages/Dashboard/ContestCreator/CreateContest/CreateContest";
 import MyContests from "../pages/Dashboard/ContestCreator/MyContests/MyContests";
+import PaymentPage from "../pages/PaymentPage/PaymentPage";
 
 const MainRoutes = createBrowserRouter([
     {
@@ -29,6 +30,10 @@ const MainRoutes = createBrowserRouter([
             {
                 path: '/all-contest/:id',
                 element: <PrivateRoutes><ContestDetail></ContestDetail></PrivateRoutes>
+            },
+            {
+                path: '/constest/payment/:id',
+                element: <PrivateRoutes><PaymentPage></PaymentPage></PrivateRoutes>
             },
             {
                 path: '/login',

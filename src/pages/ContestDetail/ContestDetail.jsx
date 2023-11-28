@@ -1,20 +1,28 @@
 import { useQuery } from "@tanstack/react-query";
-import { useParams } from "react-router-dom";
-import useAxiosPublic from "../../hooks/useAxiosPublic";
+import { Link, useParams } from "react-router-dom";
 import PageTitle from "../../components/Shared/PageTitle/PageTitle";
 import Container from "../../components/Shared/Container/Container";
 import DeadlineCountdown from "../../components/DeadlineCountdown/DeadlineCountdown";
 import Button from "../../components/Shared/Button/Button";
 import { useState, useEffect } from 'react';
 import Loading from "../../components/Loading/Loading";
+import { axiosSecure } from "../../api/axiosSecure";
+import useAuth from "../../hooks/useAuth";
 
 const ContestDetail = () => {
     const [deadlineOver, setDeadlineOver] = useState(false)
+    const [participated, setParticipated] = useState(false);
+    const { user } = useAuth()
     const { id } = useParams();
-    const axios = useAxiosPublic()
     const { data = {}, isLoading } = useQuery({
         queryKey: ["contest-detail",], queryFn: async () => {
-            const res = await axios.get(`/contests/${id}`)
+            const res = await axiosSecure.get(`/contests/${id}`)
+            const isParticipate = await axiosSecure.get(`/is-participated/${user?.email}?contestID=${res.data._id}`)
+            if (isParticipate.data.length > 0) {
+                setParticipated(true)
+            }
+            console.log(isParticipate.data.length);
+
             return res.data
         }
     })
@@ -29,7 +37,7 @@ const ContestDetail = () => {
             setDeadlineOver(false)
         }
     }, [timeRemaining])
-    
+
     if (isLoading) return <Loading></Loading>
 
     const { _id, name, image, description, contest_price, prize_money, task_submission_instruction, contest_type, contest_deadline, participate_count, winner } = data;
@@ -73,7 +81,12 @@ const ContestDetail = () => {
                             winner || deadlineOver ?
                                 <Button disable transparent={true} name="Contest Over"></Button>
                                 :
-                                <Button name="Register" ></Button>
+                                participated?
+                                <Button disable={participated || !deadlineOver || !winner} name="Participated" spin></Button>
+                                :
+                                <Link to={`/constest/payment/${_id}`}>
+                                    <Button name="Register" ></Button>
+                                </Link>
                         }
                     </div>
                 </div>
