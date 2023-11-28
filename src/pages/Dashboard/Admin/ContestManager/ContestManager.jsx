@@ -7,7 +7,7 @@ import ContestManagerTable from "./ContestManagerTable";
 
 const ContestManager = () => {
   const axios = useAxiosSecure()
-  const { data: allcontest, isLoading } = useQuery({
+  const { data: allcontest, isLoading, refetch } = useQuery({
     queryKey: ["all-contests"], queryFn: async () => {
       const res = await axios.get("/all-contests")
       return res.data;
@@ -25,7 +25,7 @@ const ContestManager = () => {
       <Container padding>
         <div className="py-12">
           {
-            isLoading? <Loading></Loading> : <ContestManagerTable allcontest={allcontest}></ContestManagerTable>
+            isLoading? <Loading></Loading> : <ContestManagerTable allcontest={allcontest} refetch={refetch}></ContestManagerTable>
           }
         </div>
       </Container>

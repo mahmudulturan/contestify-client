@@ -3,9 +3,9 @@ import PropTypes from 'prop-types';
 const WinningContestCard = ({ contest }) => {
 
     return (
-        <div className="w-full min-h-[35vh] bg-cardCol" style={{ backgroundImage: `url(${contest.image})`, backgroundSize: "cover" }}>
-            <div className='w-full h-full bg-seconderyCol/90 top-0 left-0 relative'>
-                <div className='text-center mt-2 md:absolute top-0 flex items-center justify-center w-full'>
+        <div className="w-full bg-cardCol" style={{ backgroundImage: `url(${contest.image})`, backgroundSize: "cover" }}>
+            <div className='w-full h-full bg-seconderyCol/90 relative'>
+                <div className='text-center md:absolute top-0 flex items-center justify-center w-full'>
                     <h3 className='text-center font-semibold text-white text-2xl border-b-2 inline px-2 '>The Winner</h3>
                 </div>
                 <div className='flex flex-col md:flex-row items-center justify-evenly gap-4 py-3'>

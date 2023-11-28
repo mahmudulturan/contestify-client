@@ -37,13 +37,14 @@ const CreateContest = () => {
             const task_submission_instruction = data.instruction;
             const contest_type = data.type;
             const participate_count = 0;
+            const contest_startDate = new Date().toLocaleDateString();
             const contest_deadline = contestDeadline.toLocaleDateString();
-            const status = "accepted";
+            const status = "pending";
             const contest_creator = {
                 email: user?.email,
                 name: user?.displayName,
             }
-            const contestData = { name, image, description, contest_price, prize_money, task_submission_instruction, status, contest_type, contest_deadline, participate_count, contest_creator }
+            const contestData = { name, image, description, contest_price, prize_money, task_submission_instruction, status, contest_type, contest_deadline, participate_count, contest_startDate, contest_creator }
 
             const { data: result } = await axiosSecure.post('/contests', contestData)
             if (result.acknowledged) {

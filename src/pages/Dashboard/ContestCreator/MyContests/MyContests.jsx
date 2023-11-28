@@ -15,7 +15,6 @@ const MyContests = () => {
             return res.data
         }
     })
-    console.log(mycontests);
     return (
         <div>
             <PageTitle
