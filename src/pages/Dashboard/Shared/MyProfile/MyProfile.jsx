@@ -7,6 +7,7 @@ import { useState } from "react"
 import { IoMdCamera } from "react-icons/io";
 import { axiosSecure } from "../../../../api/axiosSecure";
 import { FaEdit } from "react-icons/fa";
+import WinningPercentageChart from "./WinningPercentageChart";
 
 
 const MyProfile = () => {
@@ -17,12 +18,11 @@ const MyProfile = () => {
     const [editMode, setEditMode] = useState(false);
     const { updateUsersProfile } = useAuth()
 
-
     const handleImageUpdate = async () => {
         setLoading(true)
         const { data } = await imageUpload(selectedFile)
         await updateUsersProfile(user?.displayName, data.display_url)
-        const dbresponse = await axiosSecure.patch(`/users/${user?._id}`, {image: data?.display_url})
+        const dbresponse = await axiosSecure.patch(`/users/${user?._id}`, { image: data?.display_url })
         if (dbresponse.data.modifiedCount > 0) {
             refetch()
         }
@@ -74,7 +74,7 @@ const MyProfile = () => {
                             <div className="flex items-center">
                                 {
                                     editMode ?
-                                        <input onChange={(e)=> setName(e.target.value)} type="text" className="bg-transparent text-2xl font-semibold mt-3 text-white drop-shadow-lg outline-none text-center" defaultValue={user?.name} name="" id="name" />
+                                        <input onChange={(e) => setName(e.target.value)} type="text" className="bg-transparent text-2xl font-semibold mt-3 text-white drop-shadow-lg outline-none text-center" defaultValue={user?.name} name="" id="name" />
                                         :
                                         <span className="text-2xl font-semibold mt-3 text-white drop-shadow-lg">{user?.name}</span>
                                 }
@@ -89,6 +89,10 @@ const MyProfile = () => {
                             <label htmlFor="name" className="ml-2 cursor-pointer" onClick={() => setEditMode(!editMode)}><FaEdit></FaEdit></label>
                             <span className="text-lg font-medium my-1 text-white">{user?.email}</span>
                         </div>
+                    </div>
+                    <div className="w-full mx-auto relative">
+                        <h1 className="text-center font-medium text-3xl text-white absolute top-5">Your Winning Stats</h1>
+                        <WinningPercentageChart></WinningPercentageChart>
                     </div>
                 </div>
             </Container>

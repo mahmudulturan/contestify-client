@@ -63,7 +63,7 @@ const ContestSubmissionTable = ({ allsubmission, refetch, winner }) => {
                                     </div>
                                 </td>
                                 <td className="py-4 px-4 text-sm font-normal text-left">{contest?.purchaseTime}</td>
-                                <td className="py-4 px-4 text-sm font-normal text-left">{contest?.submitted_task || "Not Submit Yet"}</td>
+                                <td className="py-4 px-4 text-sm font-normal text-left max-w-xs overflow-x-auto">{contest?.submitted_task || "Not Submit Yet"}</td>
                                 <td className="py-4 px-4 text-sm font-normal flex items-center justify-start">
                                     <button disabled={winner || !contest?.submitted_task} onClick={() => handleSelectWinner(contest.contest_id, contest.participator)} className="py-1 px-3 font-medium border-2 border-primaryCol rounded-md bg-primaryCol hover:bg-transparent disabled:text-gray-500 transition disabled:bg-transparent duration-300 default:text-gray-600">{winner ? "Winner Declared" : !contest.submitted_task? "Task Missing" : "Select Winner"}</button>
                                 </td>

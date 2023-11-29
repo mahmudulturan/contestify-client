@@ -15,6 +15,7 @@ const JoinedContestTable = ({ joinedContests, handleUpcommingSort, refetch }) =>
                             <th className="py-4 px-4 text-base font-medium text-left">Info</th>
                             <th className="py-4 px-4 text-base font-medium text-left">Joined Date</th>
                             <th className="py-4 px-4 text-base font-medium text-left">Deadline</th>
+                            <th className="py-4 px-4 text-base font-medium text-left">Submitted Task</th>
                             <th className="py-4 px-4 text-base font-medium text-left">Actions</th>
                         </tr>
                     </thead>
@@ -32,6 +33,7 @@ const JoinedContestTable = ({ joinedContests, handleUpcommingSort, refetch }) =>
                                 </td>
                                 <td className="py-4 px-4 text-sm font-normal text-left">{contest?.purchaseTime}</td>
                                 <td className="py-4 px-4 text-sm font-normal text-left">{contest?.contest_deadline}</td>
+                                <td className="py-4 px-4 text-sm font-normal text-left max-w-xs overflow-x-auto">{contest?.submitted_task || "Not Submit Yet"}</td>
                                 <td className="py-4 px-4 text-sm font-normal">
                                     <button><ParticipateModal refetch={refetch} contest={contest}></ParticipateModal></button>
                                 </td>
