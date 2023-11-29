@@ -34,7 +34,7 @@ const PaymentPage = () => {
       ></PageTitle>
       <Container padding minHeight>
         <div className="py-12">
-          <div className="max-w-2xl min-h-[30vh] bg-cardCol mx-auto rounded-md">
+          <div className="max-w-2xl  bg-cardCol mx-auto rounded-md">
             <h1 className="text-center text-white py-4 text-sm">Continue Payment for <br /><span className="text-base">{name}</span></h1>
             <Elements stripe={stripePromise}>
               <CheckoutForm data={data}></CheckoutForm>

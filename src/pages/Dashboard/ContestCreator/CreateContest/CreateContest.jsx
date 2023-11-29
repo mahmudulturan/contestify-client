@@ -78,7 +78,7 @@ const CreateContest = () => {
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                             <div>
                                 <label htmlFor="name" className="block text-white text-xl my-2">Contest Name</label>
-                                <input {...register("name", { required: true })} type="text" name="name" id="name" placeholder="Your Name" className="px-3 py-3 rounded-md outline-none w-full" />
+                                <input {...register("name", { required: true })} type="text" name="name" id="name" placeholder="Your Contest Name" className="px-3 py-3 rounded-md outline-none w-full" />
                                 {errors.name && <span className="text-red-400 mt-2 font-medium">You must have to input an name...</span>}
                             </div>
                             <div>

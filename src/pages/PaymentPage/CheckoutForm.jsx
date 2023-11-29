@@ -51,7 +51,7 @@ const CheckoutForm = ({ data }) => {
         card: card,
         billing_details: {
           email: user?.email,
-          name: user?.displayName
+          name: user?.displayName,
         },
       },
     })
@@ -90,10 +90,19 @@ const CheckoutForm = ({ data }) => {
   }
   return (
     <div>
-      <form onSubmit={handlePayment}>
-        <CardElement>
-        </CardElement>
-        <div className="text-center">
+      <form className="relative" onSubmit={handlePayment}>
+        <div className="px-6 py-8">
+          <CardElement options={{
+            style: {
+              base: {
+                color: "white",
+                fontWeight: 500,
+              }
+            }
+          }}>
+          </CardElement>
+        </div>
+        <div className="text-center py-7">
           {
             loading ?
               <Button disable={!clientsecret || !stripe || !element || loading} icon={FaSpinner} spin></Button>

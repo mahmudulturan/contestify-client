@@ -11,7 +11,7 @@ const MyContests = () => {
     const { user } = useAuth()
     const { data: mycontests, isLoading, refetch } = useQuery({
         queryKey: ["mycontests", user?.email], queryFn: async () => {
-            const res = await axiosSecure.get(`/all-contests?email=${user?.email}`)
+            const res = await axiosSecure.get(`/my-contests/${user?.email}`)
             return res.data
         }
     })

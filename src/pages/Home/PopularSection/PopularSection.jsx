@@ -4,6 +4,7 @@ import { useQuery } from "@tanstack/react-query";
 import useAxiosPublic from "../../../hooks/useAxiosPublic";
 import ContestCard from "../../../components/ContestCard/ContestCard";
 import Button from "../../../components/Shared/Button/Button";
+import { Link } from "react-router-dom";
 
 const PopularSection = () => {
     const axios = useAxiosPublic()
@@ -27,7 +28,9 @@ const PopularSection = () => {
                     }
                 </div>
                 <div className="text-center">
-                    <Button transparent={true} name="Explore More"></Button>
+                    <Link to="/all-contest">
+                        <Button transparent={true} name="Explore More"></Button>
+                    </Link>
                 </div>
             </Container>
         </div>

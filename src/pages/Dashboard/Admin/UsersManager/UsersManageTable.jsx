@@ -46,7 +46,7 @@ const UsersManageTable = ({ users, refetch }) => {
             confirmButtonText: "Yes, make it!"
         }).then(async (result) => {
             if (result.isConfirmed) {
-                const { data } = await axiosSecure.patch(`/users/${user?._id}`, { role: newRole })
+                const { data } = await axiosSecure.patch(`/change-role/${user?._id}`, { role: newRole })
                 if (data?.modifiedCount) {
                     Swal.fire({
                         title: `Now ${user?.name} as an ${newRole}`,
