@@ -51,7 +51,14 @@ const ContestDetail = () => {
             <Container padding={true} minHeight={true}>
                 <div className="py-12 px-2 md:px-0 text-white">
                     <div className="flex items-center justify-center">
-                        <DeadlineCountdown deadline={contest_deadline}></DeadlineCountdown>
+                        {
+                            winner ?
+                                <div className="py-3 md:px-4 rounded-md bg-seconderyCol max-w-md text-center shadow-md">
+                                    <h4 className='font-medium text-2xl px-9'>Contest over</h4>
+                                </div>
+                                :
+                                <DeadlineCountdown deadline={contest_deadline}></DeadlineCountdown>
+                        }
                     </div>
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:px-3">
                         <div className="py-2 px-6 rounded-md bg-seconderyCol max-w-md my-6 flex-1 shadow-md">
@@ -81,12 +88,12 @@ const ContestDetail = () => {
                             winner || deadlineOver ?
                                 <Button disable transparent={true} name="Contest Over"></Button>
                                 :
-                                participated?
-                                <Button disable={participated || !deadlineOver || !winner} name="Participated" spin></Button>
-                                :
-                                <Link to={`/constest/payment/${_id}`}>
-                                    <Button name="Register" ></Button>
-                                </Link>
+                                participated ?
+                                    <Button disable={participated || !deadlineOver || !winner} name="Participated" spin></Button>
+                                    :
+                                    <Link to={`/constest/payment/${_id}`}>
+                                        <Button name="Register" ></Button>
+                                    </Link>
                         }
                     </div>
                 </div>

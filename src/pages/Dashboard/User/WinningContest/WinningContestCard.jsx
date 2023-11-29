@@ -12,8 +12,8 @@ const WinningContestCard = ({ contest }) => {
                     <div className='text-white '>
                         <h3 className='text-xl md:text-4xl font-semibold text-primaryCol drop-shadow-lg uppercase'>{contest?.name}</h3>
                         <p className='text-lg font-medium'>{contest?.contest_type}</p>
-                        <p className='text-xl font-medium'>You won out of <span>{contest?.participate_count}</span> participants.</p>
-                        <h2 className='text-xl font-medium'>You won <span className='text-primaryCol'>${contest?.prize_money}</span>  from this contest</h2>
+                        <p className='text-xl font-medium'>{contest?.winner?.name.split(" ")[0]} won out of <span>{contest?.participate_count}</span> participants.</p>
+                        <h2 className='text-xl font-medium'>Also won <span className='text-primaryCol'>${contest?.prize_money}</span>  from this contest</h2>
                     </div>
                     <div className='flex flex-col items-center justify-center'>
                         <img className='w-32 md:w-64 md:h-64 rounded-full object-cover border-2 border-primaryCol drop-shadow-lg' src={contest?.winner?.image} alt="" />

@@ -73,7 +73,8 @@ const CheckoutForm = ({ data }) => {
           contest_image: data?.image,
           participator: {
             name: user?.displayName,
-            email: user?.email
+            email: user?.email,
+            image: user?.photoURL
           }
         }
 
