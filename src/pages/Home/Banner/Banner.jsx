@@ -2,8 +2,11 @@ import Button from "../../../components/Shared/Button/Button";
 import Container from "../../../components/Shared/Container/Container";
 import bannerAnimation from '../../../assets/Animations/BannerAnimation.json';
 import Lottie from "lottie-react";
+import { Link } from "react-router-dom";
+import { useState } from "react";
 
 const Banner = () => {
+  const [searchKey, setSearchKey] = useState("") 
   return (
     <div style={{ backgroundImage: "url(https://i.ibb.co/vB20fC7/banner-bg.jpg)" }}>
       <div className="">
@@ -13,8 +16,10 @@ const Banner = () => {
               <h4 className="text-2xl font-semibold text-primaryCol uppercase">Contest Creation Platform</h4>
               <h1 className="font-bold text-3xl md:text-5xl lg:text-7xl text-white my-2 md:my-6">Crafting Dreams, Competing in Style</h1>
               <div className="inline py-5 pl-2 pr-1 text-center md:border border-primaryCol">
-                <input className="py-2 md:py-4 px-4 md:px-6 outline-none bg-transparent rounded-l-lg text-white" placeholder="Search Contest" type="text" name="search" id="search" />
+                <input onChange={(e)=> setSearchKey(e.target.value)} className="py-2 md:py-4 px-4 md:px-6 outline-none bg-transparent rounded-l-lg text-white" placeholder="Search Contest" type="text" name="search" id="search" />
+                <Link to={`/all-contest?tags=${searchKey}`}>
                 <Button name="Search"></Button>
+                </Link>
               </div>
             </div>
             <div className="flex-1">

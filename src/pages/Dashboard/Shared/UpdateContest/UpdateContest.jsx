@@ -79,7 +79,6 @@ const UpdateContest = () => {
         }
 
     }
-    console.log(loading);
 
     return (
         <div>
