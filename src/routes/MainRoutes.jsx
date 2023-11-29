@@ -15,6 +15,7 @@ import MyContests from "../pages/Dashboard/ContestCreator/MyContests/MyContests"
 import PaymentPage from "../pages/PaymentPage/PaymentPage";
 import JoinedContest from "../pages/Dashboard/User/JoinedContest/JoinedContest";
 import WinningContest from "../pages/Dashboard/User/WinningContest/WinningContest";
+import UpdateContest from "../pages/Dashboard/Shared/UpdateContest/UpdateContest";
 
 const MainRoutes = createBrowserRouter([
     {
@@ -74,6 +75,10 @@ const MainRoutes = createBrowserRouter([
             {
                 path: 'create-contests',
                 element: <CreateContest></CreateContest>
+            },
+            {
+                path: 'update-contests/:id',
+                element: <UpdateContest></UpdateContest>
             },
             {
                 path: 'my-contests',

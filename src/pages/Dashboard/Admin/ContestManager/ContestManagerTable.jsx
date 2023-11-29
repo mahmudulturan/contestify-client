@@ -86,7 +86,7 @@ const ContestManagerTable = ({ allcontest, refetch }) => {
                                 <td className="py-4 px-4 text-sm font-normal text-left">{contest?.contest_deadline}</td>
                                 <td className="py-4 px-4 text-sm font-normal flex items-center justify-start ">
                                     <button onClick={() => handleDeleteContest(contest?._id)} className="text-2xl mr-2 rounded-md hover:text-primaryCol transition duration-300"><MdDelete></MdDelete></button>
-                                    <Link to={`/dashboard/update/${contest?._id}`}>
+                                    <Link to={`/dashboard/update-contests/${contest?._id}`}>
                                         <button className="text-2xl mr-2 rounded-md hover:text-primaryCol transition duration-300"><MdEditDocument></MdEditDocument></button>
                                     </Link>
                                 </td>

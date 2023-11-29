@@ -2,18 +2,21 @@ import { Link, NavLink, Outlet } from "react-router-dom";
 import useUser from "../hooks/useUser";
 import useAuth from "../hooks/useAuth";
 import Button from "../components/Shared/Button/Button";
+import { Toaster } from 'react-hot-toast';
+
 
 const DashboardLayout = () => {
     const { role } = useUser()
     const { user, logOut } = useAuth();
     const handleLogOut = () => {
         logOut()
-        
+
     }
 
 
     return (
         <div className="bg-seconderyCol">
+            <Toaster />
             <div className="flex flex-col md:flex-row">
                 <div className="md:w-3/12">
                     {/* sidebar section */}
