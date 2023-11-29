@@ -30,7 +30,7 @@ const JoinedContest = () => {
             ></PageTitle>
             <Container padding>
                 <div className="py-12">
-                    <JoinedContestTable joinedContests={joinedContests} handleUpcommingSort={handleUpcommingSort}></JoinedContestTable>
+                    <JoinedContestTable refetch={refetch} joinedContests={joinedContests} handleUpcommingSort={handleUpcommingSort}></JoinedContestTable>
                 </div>
             </Container>
         </div>

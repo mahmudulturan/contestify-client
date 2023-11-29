@@ -11,7 +11,7 @@ const ContestSubmissionTable = ({ allsubmission, refetch, winner }) => {
             showCancelButton: true,
             confirmButtonColor: "#0ECDB9",
             cancelButtonColor: "#1B1D4D",
-            confirmButtonText: "Yes, delete!"
+            confirmButtonText: "Yes, Confirm!"
         }).then(async (result) => {
             if (result.isConfirmed) {
                 const { data } = await axiosSecure.patch(`/select-winner/${id}`, winner)

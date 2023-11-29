@@ -53,7 +53,7 @@ const MyContestsTable = ({ mycontests, refetch }) => {
                                 <td className="py-4 px-4 text-sm font-normal text-left">{contest?.status || "pending"}</td>
                                 <td className="py-4 px-4 text-sm font-normal text-left">{contest?.participate_count}</td>
                                 <td className="py-4 px-4 text-sm font-normal text-left">{contest?.contest_deadline}</td>
-                                <td className="py-4 px-4 text-sm font-normal text-left">{contest?.winner?.name || "Contest Running"} <span className="block text-xs">{contest?.winner?.email}</span></td>
+                                <td className="py-4 px-4 text-sm font-normal text-left">{contest?.winner?.name || "Not Select Yet"} <span className="block text-xs">{contest?.winner?.email}</span></td>
                                 <td className="py-4 px-4 text-sm font-normal flex items-center justify-start ">
                                     <button onClick={() => handleDeleteContest(contest._id)} disabled={contest.status == "accepted"} className="text-2xl mr-2 rounded-md hover:text-primaryCol disabled:text-gray-500 transition duration-300"><MdDelete></MdDelete></button>
                                     <button className="flex items-center justify-center" >

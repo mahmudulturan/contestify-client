@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import ParticipateModal from './ParticipateModal';
 
-const JoinedContestTable = ({ joinedContests, handleUpcommingSort }) => {
+const JoinedContestTable = ({ joinedContests, handleUpcommingSort, refetch }) => {
 
     return (
         <>
@@ -13,7 +13,6 @@ const JoinedContestTable = ({ joinedContests, handleUpcommingSort }) => {
                         <tr>
                             <th className="py-4 px-4 text-base font-medium text-left">#</th>
                             <th className="py-4 px-4 text-base font-medium text-left">Info</th>
-                            <th className="py-4 px-4 text-base font-medium text-left">Status</th>
                             <th className="py-4 px-4 text-base font-medium text-left">Joined Date</th>
                             <th className="py-4 px-4 text-base font-medium text-left">Deadline</th>
                             <th className="py-4 px-4 text-base font-medium text-left">Actions</th>
@@ -31,11 +30,10 @@ const JoinedContestTable = ({ joinedContests, handleUpcommingSort }) => {
                                         </div>
                                     </div>
                                 </td>
-                                <td className="py-4 px-4 text-sm font-normal text-left">{contest?.contest_creator?.name || "Contest Running"} <span className="block text-xs">{contest?.contest_creator?.email}</span></td>
                                 <td className="py-4 px-4 text-sm font-normal text-left">{contest?.purchaseTime}</td>
                                 <td className="py-4 px-4 text-sm font-normal text-left">{contest?.contest_deadline}</td>
                                 <td className="py-4 px-4 text-sm font-normal">
-                                    <button><ParticipateModal contest={contest}></ParticipateModal></button>
+                                    <button><ParticipateModal refetch={refetch} contest={contest}></ParticipateModal></button>
                                 </td>
                             </tr>)
                         }
@@ -47,7 +45,8 @@ const JoinedContestTable = ({ joinedContests, handleUpcommingSort }) => {
 
 JoinedContestTable.propTypes = {
     joinedContests: PropTypes.array,
-    handleUpcommingSort: PropTypes.any
+    handleUpcommingSort: PropTypes.any,
+    refetch: PropTypes.any
 }
 
 export default JoinedContestTable;

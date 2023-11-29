@@ -14,7 +14,7 @@ const ContestCard = ({ contest }) => {
                 </div>
                 <h3 className='text-white font-semibold text-2xl uppercase my-1 min-h-[64px]'>{name}</h3>
                 <hr className='my-2 border-seconderyCol/70' />
-                <p className='text-sm text-white'>{description.slice(0, 60)}...</p>
+                <p className='text-sm text-white'>{description?.slice(0, 60)}...</p>
                 <div className='text-center absolute bottom-2 w-full'>
                     <Link to={`/all-contest/${_id}`}>
                         <Button name="Details"></Button>

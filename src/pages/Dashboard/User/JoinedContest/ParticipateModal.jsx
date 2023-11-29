@@ -1,19 +1,40 @@
 import { useState } from 'react';
 import PropTypes from 'prop-types';
+import { axiosSecure } from '../../../../api/axiosSecure';
+import toast from 'react-hot-toast';
 
-const ParticipateModal = ({ contest }) => {
+
+const ParticipateModal = ({ contest, refetch }) => {
     const [isOpen, setIsOpen] = useState(false);
-    const handleParticipate = () => {
-        console.log(contest?.contest_id);
+    const [task, setTask] = useState("");
+    const now = new Date().getTime();
+    const endTime = new Date(contest?.contest_deadline).getTime();
+    const deadlineOver = now - endTime > 0;
+    const handleParticipate = async () => {
+        const res = await axiosSecure.post(`/participate-contest/${contest?._id}`, { task })
+        if (res.data.modifiedCount) {
+            toast.success('Successfully task submitted!')
+            setIsOpen(false)
+            refetch()
+        }
     }
 
     return (
         <div className="relative flex justify-center">
             <button
+                disabled={contest?.submitted_task || deadlineOver}
                 onClick={() => setIsOpen(true)}
-                className="text-sm mr-2 rounded-md border-2 border-primaryCol hover:bg-transparent font-medium py-2 px-3 bg-primaryCol transition duration-300 focus:bg-transparent"
+                className="text-sm mr-2 rounded-md border-2 border-primaryCol disabled:bg-transparent  hover:bg-transparent font-medium py-2 px-3 bg-primaryCol transition duration-300 focus:bg-transparent"
             >
-                Participate
+                {
+                    contest?.submitted_task ?
+                        "Participated"
+                        :
+                        deadlineOver ?
+                            "Deadline Over"
+                            :
+                            "Participate"
+                }
             </button>
 
             {isOpen && (
@@ -49,15 +70,10 @@ const ParticipateModal = ({ contest }) => {
                                     </h3>
 
                                     <p className="">
-                                        <textarea className='w-full text-white bg-seconderyCol/50 outline-none rounded-md py-2 px-3 my-3' name="" id="" cols="20" rows="10" placeholder='Provide your tasks here...'></textarea>
+                                        <textarea onChange={(e) => setTask(e.target.value)} className='w-full text-white bg-seconderyCol/50 outline-none rounded-md py-2 px-3 my-3' name="" id="" cols="20" rows="10" placeholder='Provide your tasks here...'></textarea>
                                     </p>
                                 </div>
                             </div>
-
-                            <div className="flex items-center justify-center mt-4">
-
-                            </div>
-
                             <div className="mt-5 sm:flex sm:items-center sm:-mx-2">
                                 <button
                                     onClick={() => setIsOpen(false)}
@@ -82,7 +98,8 @@ const ParticipateModal = ({ contest }) => {
 }
 
 ParticipateModal.propTypes = {
-    contest: PropTypes.object
+    contest: PropTypes.object,
+    refetch: PropTypes.object,
 }
 
 export default ParticipateModal;
