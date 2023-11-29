@@ -9,7 +9,7 @@ import Loading from "../../../../components/Loading/Loading";
 
 const MyContests = () => {
     const { user } = useAuth()
-    const { data: mycontests, isLoading } = useQuery({
+    const { data: mycontests, isLoading, refetch } = useQuery({
         queryKey: ["mycontests", user?.email], queryFn: async () => {
             const res = await axiosSecure.get(`/all-contests?email=${user?.email}`)
             return res.data
@@ -26,7 +26,7 @@ const MyContests = () => {
             <Container padding>
                 <div className="py-12">
                     {
-                        isLoading ? <Loading></Loading> : <MyContestsTable mycontests={mycontests}></MyContestsTable>
+                        isLoading ? <Loading></Loading> : <MyContestsTable mycontests={mycontests} refetch={refetch}></MyContestsTable>
                     }
                 </div>
             </Container>
