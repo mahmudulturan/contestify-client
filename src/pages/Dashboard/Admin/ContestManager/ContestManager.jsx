@@ -1,15 +1,14 @@
 import { useQuery } from "@tanstack/react-query";
 import Container from "../../../../components/Shared/Container/Container";
-import useAxiosSecure from "../../../../hooks/useAxiosSecure";
 import Loading from "../../../../components/Loading/Loading";
 import PageTitle from "../../../../components/Shared/PageTitle/PageTitle";
 import ContestManagerTable from "./ContestManagerTable";
+import { axiosSecure } from "../../../../api/axiosSecure";
 
 const ContestManager = () => {
-  const axios = useAxiosSecure()
   const { data: allcontest, isLoading, refetch } = useQuery({
     queryKey: ["all-contests"], queryFn: async () => {
-      const res = await axios.get("/all-contests")
+      const res = await axiosSecure.get("/all-contests")
       return res.data;
     }
   })

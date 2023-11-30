@@ -10,12 +10,13 @@ import { useState } from "react";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { CgSpinnerTwo } from "react-icons/cg";
 import toast from "react-hot-toast";
+import { getToken } from "../../api/auth";
 
 
 
 const Login = () => {
     const [hidePassword, setHidePassword] = useState(true)
-    const { loginUser, loading, user } = useAuth()
+    const { loginUser, loading, user, setLoading } = useAuth()
     const navigate = useNavigate()
     const loc = useLocation()
     if (user) {
@@ -26,9 +27,17 @@ const Login = () => {
     const onSubmit = async (data) => {
         const email = data.email;
         const password = data.password;
-        await loginUser(email, password);
-        toast.success('Successfully Login')
-        navigate(loc.state?.from?.pathname || "/", { replace: true })
+        try{
+            await loginUser(email, password);
+            await getToken(email)
+            toast.success('Successfully Login')
+            navigate(loc.state?.from?.pathname || "/", { replace: true })
+        }
+        catch (err){
+            toast.error(err.message)
+            setLoading(false)
+            console.log(user);
+        }
     }
     return (
         <div className="pt-12 px-2 md:px-0">

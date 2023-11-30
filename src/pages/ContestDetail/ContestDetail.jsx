@@ -21,8 +21,6 @@ const ContestDetail = () => {
             if (isParticipate.data.length > 0) {
                 setParticipated(true)
             }
-            console.log(isParticipate.data.length);
-
             return res.data
         }
     })

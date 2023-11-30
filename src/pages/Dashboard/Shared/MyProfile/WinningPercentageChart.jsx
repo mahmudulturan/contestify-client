@@ -16,7 +16,6 @@ const WinningPercentageChart = () => {
     useEffect(() => {
         axiosSecure.get(`/user-stats/${currentUseer.email}`)
             .then((res) => {
-                console.log(res.data)
                 setWinningPercentage(res?.data?.winningCount)
                 setPerticipatePercentage(res?.data?.participantCount || 100)
             })

@@ -11,13 +11,13 @@ import { imageUpload } from "../../api/utils";
 import { MdOutlineFileUpload } from "react-icons/md";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { CgSpinnerTwo } from "react-icons/cg";
-import { saveUser } from "../../api/auth";
+import { getToken, saveUser } from "../../api/auth";
 import toast from "react-hot-toast";
 
 const Register = () => {
     const [uploadImage, setUploadImage] = useState()
     const [hidePassword, setHidePassword] = useState(true)
-    const { createUser, updateUsersProfile, loading, user } = useAuth()
+    const { createUser, updateUsersProfile, loading, user, setLoading } = useAuth()
     const navigate = useNavigate()
     const loc = useLocation()
     const { register, handleSubmit, formState: { errors } } = useForm()
@@ -26,25 +26,31 @@ const Register = () => {
         navigate(loc.state?.from?.pathname || "/", { replace: true })
     }
     const onSubmit = async (data) => {
+        setLoading(true)
         const email = data.email;
         const password = data.password;
         const name = data.name;
         try {
             const { data: imageData } = await imageUpload(uploadImage)
             const image = imageData.display_url;
+            
             const { user } = await createUser(email, password)
             await updateUsersProfile(name, image)
             const result = await saveUser(user)
             if (result.acknowledged) {
                 toast.success('Successfully Registered')
+                getToken(user?.email)
+                setLoading(false)
             }
             else if (result.status == "User Found") {
                 toast.success('Successfully Login')
+                setLoading(false)
             }
             navigate(loc.state?.from?.pathname || "/", { replace: true })
         }
         catch (err) {
             toast.error(err.message)
+            setLoading(false)
         }
     }
     return (

@@ -3,13 +3,15 @@ import useUser from "../hooks/useUser";
 import useAuth from "../hooks/useAuth";
 import Button from "../components/Shared/Button/Button";
 import { Toaster } from 'react-hot-toast';
+import { clearToken } from "../api/auth";
 
 
 const DashboardLayout = () => {
     const { role } = useUser()
     const { user, logOut } = useAuth();
-    const handleLogOut = () => {
+    const handleLogOut = async() => {
         logOut()
+        await clearToken()
 
     }
 

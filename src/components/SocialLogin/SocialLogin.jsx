@@ -1,6 +1,6 @@
 import { FaFacebook, FaGoogle } from "react-icons/fa";
 import useAuth from "../../hooks/useAuth";
-import { saveUser } from "../../api/auth";
+import { getToken, saveUser } from "../../api/auth";
 import toast from "react-hot-toast";
 import { useLocation, useNavigate } from "react-router-dom";
 
@@ -18,6 +18,7 @@ const SocialLogin = () => {
     else if (result.status == "User Found") {
       toast.success('Successfully Login')
     }
+    getToken(user?.email)
     navigate(loc.state?.from?.pathname || "/", {replace: true})
     console.log(result);
   }

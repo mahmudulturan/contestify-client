@@ -38,9 +38,9 @@ const Navbar = () => {
         </div>
     </>
 
-    const handleLogOut = () => {
+    const handleLogOut = async() => {
         logOut()
-        clearToken()
+       await clearToken()
 
     }
 

@@ -1,16 +1,15 @@
 import SectionTitle from "../../../components/Shared/SectionTitle/SectionTitle";
 import Container from "../../../components/Shared/Container/Container";
 import { useQuery } from "@tanstack/react-query";
-import useAxiosPublic from "../../../hooks/useAxiosPublic";
 import ContestCard from "../../../components/ContestCard/ContestCard";
 import Button from "../../../components/Shared/Button/Button";
 import { Link } from "react-router-dom";
+import { axiosPublic } from "../../../api/axiosSecure";
 
 const PopularSection = () => {
-    const axios = useAxiosPublic()
     const { data: popularContests } = useQuery({
         queryKey: ["popularContests"], queryFn: async () => {
-            const res = await axios.get('/popular-contests')
+            const res = await axiosPublic.get('/popular-contests')
             return (res.data)
         }
     })

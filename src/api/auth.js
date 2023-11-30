@@ -14,6 +14,6 @@ export const getToken = async (email) => {
 }
 
 export const clearToken = async () => {
-    const {data} = await axiosSecure.post('/clear-cookie')
+    const {data} = await axiosSecure.delete('/clear-cookie')
     return data;    
 }
