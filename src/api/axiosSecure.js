@@ -10,10 +10,9 @@ axiosSecure.interceptors.response.use(
     response => {
         return response
     },
-    async err =>{
-        if(err.response && err.response.status == 401 || err.response.status == 403){
-           await signOut(auth)
-           window.location.replace('/login')
+    async err => {
+        if (err.response && err.response.status == 401 || err.response.status == 403) {
+            await signOut(auth)
         }
     }
 )
