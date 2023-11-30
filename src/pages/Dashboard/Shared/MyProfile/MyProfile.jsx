@@ -16,6 +16,7 @@ const MyProfile = () => {
     const { user, refetch } = useUser();
     const [name, setName] = useState(user?.name);
     const [editMode, setEditMode] = useState(false);
+    const { role } = useUser()
     const { updateUsersProfile } = useAuth()
 
     const handleImageUpdate = async () => {
@@ -90,10 +91,13 @@ const MyProfile = () => {
                             <span className="text-lg font-medium my-1 text-white">{user?.email}</span>
                         </div>
                     </div>
-                    <div className="w-full mx-auto relative">
-                        <h1 className="text-center font-medium text-3xl text-white absolute top-5">Your Winning Stats</h1>
-                        <WinningPercentageChart></WinningPercentageChart>
-                    </div>
+                    {
+                        role === "user" &&
+                        <div className="w-full mx-auto relative">
+                            <h1 className="text-center font-medium text-3xl text-white absolute top-5">Your Winning Stats</h1>
+                            <WinningPercentageChart></WinningPercentageChart>
+                        </div>
+                    }
                 </div>
             </Container>
         </div>

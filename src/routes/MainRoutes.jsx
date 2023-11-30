@@ -19,11 +19,13 @@ import UpdateContest from "../pages/Dashboard/Shared/UpdateContest/UpdateContest
 import ContestSubmission from "../pages/Dashboard/ContestCreator/ContestSubmission/ContestSubmission";
 import AdminRoutes from "./AdminRoutes";
 import CreatorRoutes from "./CreatorRoutes";
+import ErrorPage from "../pages/ErrorPage/ErrorPage";
 
 const MainRoutes = createBrowserRouter([
     {
         path: '/',
         element: <MainLayout></MainLayout>,
+        errorElement: <ErrorPage></ErrorPage>,
         children: [
             {
                 path: '/',

@@ -1,8 +1,19 @@
-# React + Vite
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+# Contestify
+- Live Link: https://thecontestify.web.app/
 
-Currently, two official plugins are available:
+## Project Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- User can register and login via email and password also can login with google.
+- In the homepage user can search contest by contest tag and also can see the all popular contests.
+- In the all contest page user can see all contest also can filter by constest tags.
+- When user click on details button then user will redirect to the details page of this contest. 
+- If the contest not over then user can register for the contest.
+- When a user try to register a contest then he will redirect to the payment page after successfully payment he will registered for this contest.
+- After registering a contest he can perticipate and can submit his/her task on the joined contest page. 
+- When a registering a contest he can perticipate and can submit his/her task on the joined contest page. 
+- If a user win any contest he can see his/her all winning card in his winning page. 
+- In this profile page user can change his/her profile picture and name also user can show his winning percentage. 
+- In dashboard a contest creator can add any contest when a contest will approved by admin user can participate this contest. 
+- In this my contests page user can see all contest that he/she added. and also all submission page creator can see all submitted contest task. and also can declare a winner for this contest. 
+- In the user manager page admin can change users role. and the contest managers page admin can approve contest. or can delete the contest
