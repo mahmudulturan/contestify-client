@@ -22,7 +22,7 @@ const MyProfile = () => {
         setLoading(true)
         const { data } = await imageUpload(selectedFile)
         await updateUsersProfile(user?.displayName, data.display_url)
-        const dbresponse = await axiosSecure.patch(`/users/${user?._id}`, { image: data?.display_url })
+        const dbresponse = await axiosSecure.patch(`/users/${user?.email}`, { image: data?.display_url })
         if (dbresponse.data.modifiedCount > 0) {
             refetch()
         }
@@ -32,7 +32,7 @@ const MyProfile = () => {
     const handleNameUpdate = async () => {
         setLoading(true)
         await updateUsersProfile(name, user?.image)
-        const dbresponse = await axiosSecure.patch(`/users/${user?._id}`, { name: name })
+        const dbresponse = await axiosSecure.patch(`/users/${user?.email}`, { name: name })
         if (dbresponse.data.modifiedCount > 0) {
             refetch()
         }

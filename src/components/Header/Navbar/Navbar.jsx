@@ -7,6 +7,7 @@ import Button from '../../Shared/Button/Button';
 import useAuth from '../../../hooks/useAuth';
 
 import useUser from '../../../hooks/useUser';
+import { clearToken } from '../../../api/auth';
 
 const Navbar = () => {
     const [isOpen, setIsOpen] = useState(false);
@@ -39,6 +40,7 @@ const Navbar = () => {
 
     const handleLogOut = () => {
         logOut()
+        clearToken()
 
     }
 

@@ -2,6 +2,7 @@ import { createContext, useEffect, useState } from "react";
 import PropTypes from 'prop-types';
 import { GoogleAuthProvider, createUserWithEmailAndPassword, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut, updateProfile } from "firebase/auth";
 import auth from "../config/firebase.config";
+import { getToken } from "../api/auth";
 
 export const AuthContext = createContext(null);
 const AuthProvider = ({children}) => {
@@ -32,6 +33,7 @@ const AuthProvider = ({children}) => {
             console.log('fromobserver', currentUser);
             setUser(currentUser)
             setLoading(false)
+            getToken(currentUser?.email)
         })
         return ()=>{
            return unsubscribe()

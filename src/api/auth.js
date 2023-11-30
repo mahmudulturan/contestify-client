@@ -6,3 +6,14 @@ export const saveUser = async (user) => {
     const {data} = await axiosSecure.put('/users', userData)
     return data;
 }
+
+
+export const getToken = async (email) => {
+    const {data} = await axiosSecure.post('/jwt', {email})
+    return data;
+}
+
+export const clearToken = async () => {
+    const {data} = await axiosSecure.post('/clear-cookie')
+    return data;    
+}
