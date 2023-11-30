@@ -17,6 +17,8 @@ import JoinedContest from "../pages/Dashboard/User/JoinedContest/JoinedContest";
 import WinningContest from "../pages/Dashboard/User/WinningContest/WinningContest";
 import UpdateContest from "../pages/Dashboard/Shared/UpdateContest/UpdateContest";
 import ContestSubmission from "../pages/Dashboard/ContestCreator/ContestSubmission/ContestSubmission";
+import AdminRoutes from "./AdminRoutes";
+import CreatorRoutes from "./CreatorRoutes";
 
 const MainRoutes = createBrowserRouter([
     {
@@ -59,45 +61,45 @@ const MainRoutes = createBrowserRouter([
         children: [
             {
                 path: 'my-profile',
-                element: <MyProfile></MyProfile>
+                element: <PrivateRoutes><MyProfile></MyProfile></PrivateRoutes> 
             },
 
             {
                 path: 'joined-contests',
-                element: <JoinedContest></JoinedContest>
+                element: <PrivateRoutes><JoinedContest></JoinedContest></PrivateRoutes> 
             },
             {
                 path: 'winning-contests',
-                element: <WinningContest></WinningContest>
+                element: <PrivateRoutes><WinningContest></WinningContest></PrivateRoutes> 
             },
             
 
 
             {
                 path: 'create-contests',
-                element: <CreateContest></CreateContest>
+                element: <CreatorRoutes><CreateContest></CreateContest> </CreatorRoutes>
             },
             {
                 path: 'update-contests/:id',
-                element: <UpdateContest></UpdateContest>
+                element: <CreatorRoutes><UpdateContest></UpdateContest></CreatorRoutes>
             },
             {
                 path: 'my-contests',
-                element: <MyContests></MyContests>
+                element: <CreatorRoutes><MyContests></MyContests></CreatorRoutes> 
             },
             {
                 path: 'contest-submission/:id',
-                element: <ContestSubmission></ContestSubmission>
+                element: <CreatorRoutes><ContestSubmission></ContestSubmission></CreatorRoutes> 
             },
 
 
             {
                 path: 'manage-contests',
-                element: <ContestManager></ContestManager>
+                element: <AdminRoutes><ContestManager></ContestManager></AdminRoutes> 
             },
             {
                 path: 'manage-users',
-                element: <UsersManager></UsersManager>
+                element: <AdminRoutes><UsersManager></UsersManager></AdminRoutes> 
             },
         ]
     }
