@@ -1,6 +1,10 @@
 
 # Contestify
 - Live Link: https://thecontestify.web.app/
+- Admin email: adminbhai@gmail.com
+- Admin password: 1234aA!
+- Creator Email : creatorbhai@gmail.com
+- Creator Passoword : 1234aA!
 
 ## Project Features
 
